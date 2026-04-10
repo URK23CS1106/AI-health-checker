@@ -1,0 +1,33 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.coverage
+.coverage.*
+.pytest_cache/
+
+# Virtual environments
+env/
+venv/
+.venv/
+
+# IDEs and OS
+.vscode/
+.DS_Store
+Thumbs.db
+
+# Terraform
+*.tfstate
+*.tfstate.*
+.terraform/
+terraform.tfstate
+terraform.tfstate.backup
+*.tfvars
+.terraform.lock.hcl
+
+# Ansible and local tooling
+tools/
+
+# Local data
+backend/history.db
