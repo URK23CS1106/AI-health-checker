@@ -1,0 +1,28 @@
+---
+- name: Deploy AI Symptom Checker to Local Kubernetes
+  hosts: localhost
+  connection: local
+  tasks:
+    - name: Ensure Kubernetes Namespace exists
+      kubernetes.core.k8s:
+        name: ai-health
+        api_version: v1
+        kind: Namespace
+        state: present
+
+    - name: Deploy Application from Manifest
+      kubernetes.core.k8s:
+        src: ../k8s/local-deploy.yaml
+        state: present
+        namespace: ai-health
+
+    - name: Wait for Pods to be ready
+      kubernetes.core.k8s_info:
+        kind: Pod
+        namespace: ai-health
+        label_selectors:
+          - app=ai-symptom-checker
+      register: pod_list
+      until: pod_list.resources | length > 0
+      retries: 5
+      delay: 5

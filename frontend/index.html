@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Health Symptom Checker</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar Navigation -->
+        <nav class="sidebar">
+            <div class="logo">
+                <i class="fa-solid fa-heart-pulse"></i>
+                <span>Pulse AI</span>
+            </div>
+            <ul class="nav-links">
+                <li class="active" id="nav-chat"><i class="fa-solid fa-message"></i> Check Symptoms</li>
+                <li id="nav-history"><i class="fa-solid fa-clock-rotate-left"></i> History</li>
+            </ul>
+            <div class="auth-status" id="auth-status">
+                <button id="logout-btn" class="hidden"><i class="fa-solid fa-right-from-bracket"></i> Logout</button>
+            </div>
+        </nav>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            
+            <!-- Auth Modal Overlay -->
+            <div id="auth-modal" class="modal-overlay">
+                <div class="modal-content glass-panel">
+                    <h2 id="auth-title">Welcome to Pulse AI</h2>
+                    <p id="auth-subtitle">Please log in to track your symptom history.</p>
+                    <form id="auth-form">
+                        <input type="text" id="auth-username" required placeholder="Username" autocomplete="off" />
+                        <input type="password" id="auth-password" required placeholder="Password" />
+                        <button type="submit" id="auth-submit-btn">Login</button>
+                    </form>
+                    <p class="auth-switch">Don't have an account? <span id="auth-toggle">Register</span></p>
+                    <p id="auth-error"></p>
+                </div>
+            </div>
+            
+            <!-- Chatbot Section -->
+            <section id="chat-section" class="active-section glass-panel">
+                <div class="chat-header">
+                    <h2>Hello, I'm Pulse AI</h2>
+                    <p>Describe your symptoms accurately, and I'll predict possible conditions.</p>
+                </div>
+                
+                <div class="chat-box" id="chat-box">
+                    <div class="message bot-message">
+                        <div class="avatar"><i class="fa-solid fa-robot"></i></div>
+                        <div class="message-content">
+                            <p>Hi! What symptoms are you experiencing today?</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="chat-input-container">
+                    <button id="mic-btn" class="glow-on-hover mic-idle" title="Click to speak"><i class="fa-solid fa-microphone"></i></button>
+                    <input type="text" id="symptom-input" placeholder="E.g., I have a severe headache, fever..." autocomplete="off">
+                    <button id="send-btn" class="glow-on-hover" title="Send message"><i class="fa-solid fa-paper-plane"></i></button>
+                </div>
+            </section>
+
+            <!-- History Section -->
+            <section id="history-section" class="hidden-section glass-panel">
+                <div class="header">
+                    <h2>Past Checks</h2>
+                    <button id="refresh-history"><i class="fa-solid fa-rotate-right"></i> Refresh</button>
+                </div>
+                <div class="history-list" id="history-list">
+                    <!-- History items will be injected here -->
+                </div>
+            </section>
+
+        </main>
+    </div>
+    
+    <script src="app.js"></script>
+</body>
+</html>
